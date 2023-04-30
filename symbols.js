@@ -369,28 +369,28 @@ const symbols = [
   },
   {
     button: 60,
-    eng: ["", ""],
-    rus: ["", ""],
-    all: ["ArrowLeft"],
+    code: ["ControlRight"],
+    eng: ["Ctrl", "Ctrl"],
+    rus: ["Ctrl", "Ctrl"],
+    all: ["Control"],
   },
   {
     button: 61,
     eng: ["", ""],
     rus: ["", ""],
-    all: ["ArrowDown"],
+    all: ["ArrowLeft"],
   },
   {
     button: 62,
     eng: ["", ""],
     rus: ["", ""],
-    all: ["ArrowRight"],
+    all: ["ArrowDown"],
   },
   {
     button: 63,
-    code: ["ControlRight"],
-    eng: ["Ctrl", "Ctrl"],
-    rus: ["Ctrl", "Ctrl"],
-    all: ["Control"],
+    eng: ["", ""],
+    rus: ["", ""],
+    all: ["ArrowRight"],
   },
 ];
 export default symbols;
