@@ -30,81 +30,118 @@ function full() {
       "</div>";
   }
   keyBoard.innerHTML = button;
+  //type with the mouse
+  const buttons = document.querySelectorAll(".buttons");
+  for (let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener("click", function (event) {
+      mouseClick(event.target);
+    });
+  }
+  if (capsLock == 1) {
+    buttons[29].classList.add("active-keys");
+  }
 }
 full();
 
-// let arrKeyBoard = [
-//   96, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 45, 61, 113, 119, 101, 114, 116,
-//   121, 117, 105, 111, 112, 91, 93, 97, 115, 100, 102, 103, 104, 106, 107, 108,
-//   59, 39, 92, 92, 122, 120, 99, 118, 98, 110, 109, 44, 46, 47, 32,
-// ];
+function mouseClick(button) {
+  let attribute = button.getAttribute("data");
+  switch (attribute) {
+    case "29": // Caps Lock
+      button.classList.toggle("active-keys");
+      capsLock = capsLock === 0 ? 1 : 0;
+      button = "";
+      full();
+      break;
+    case "58": // Space
+      textareaElement.append(" ");
+      break;
+    case "14": //Tab
+      textareaElement.append("    ");
+      break;
+    case "13": // Backspace
+      textareaElement.append(Backspace());
+      break;
+    case "28": // Delete
+      textareaElement.append(Delete());
+      break;
+    case "57":
+    case "59":
+    case "55":
+    case "56":
+    case "60": // Empty value
+      textareaElement.append("");
+      break;
+    case "41": // Enter
+      textareaElement.append("\n");
+      break;
+    case "53": // Arrow Up
+      textareaElement.append(ArrowUp());
+      break;
+    case "61": // Arrow Left
+      textareaElement.append(ArrowLeft());
+      break;
+    case "62": // Arrow Down
+      textareaElement.append(ArrowDown());
+      break;
+    case "63": // Arrow Right
+      textareaElement.append(ArrowRight());
+      break;
+    case "42":
+    case "54": // Arrow Right
+      const shiftActive =
+        document
+          .querySelector('.buttons[data="57"]')
+          .classList.contains("active") ||
+        document
+          .querySelector('.buttons[data="59"]')
+          .classList.contains("active");
+      if (shiftActive) {
+        toggleLanguage();
+      }
+      break;
+    case "42":
+    case "54":
+      textareaElement.append("");
+      break;
+    default: // Character key
+      textareaElement.append(symbols[attribute].eng[capsLock]);
+  }
+}
 
-// function init() {
-//   let out = "";
-//   for (let i = 0; i < arrKeyBoard.length; i++) {
-//     out +=
-//       '<div class="key-board__button" >' +
-//       String.fromCharCode(arrKeyBoard[i]) +
-//       "</div>";
-//   }
-//   document.querySelector(".key-board").innerHTML = out;
-// }
-// init();
+// Function to handle Backspace key press
+function getCaret(el) {
+  return el.selectionStart ?? el.createTextRange()?.text?.length ?? 0;
+}
 
-// // inputElement.addEventListener("keypress", function (event) {
-// //   // console.log(event);
-// //   arrKeyBoard.push(event.charCode);
-// //   console.log(arrKeyBoard);
-// // });
+function resetCursor(txtElement, currentPos) {
+  if (txtElement.setSelectionRange) {
+    txtElement.focus();
+    txtElement.setSelectionRange(currentPos, currentPos);
+  } else if (txtElement.createTextRange) {
+    txtElement.createTextRange()?.moveStart("character", currentPos)?.select();
+  }
+}
 
-// document.querySelector("input").onkeypress = function (event) {
-//   // console.log("keypress");
-//   // console.log("chareCode:" + event.charCode);
-//   // console.log("code:" + event.code);
-//   // console.log("key:" + event.key);
-//   // console.log("keyCode:" + event.keyCode);
-//   // console.log(event);
-//   // console.log("1");
-//   console.log(arrKeyBoard);
-// };
+function Backspace() {
+  let textarea = document.querySelector(".textarea");
+  let currentPos = getCaret(textarea);
+  let text = textarea.value;
+  let backSpace = text.slice(0, currentPos - 1) + text.slice(currentPos);
+  textarea.value = backSpace;
+  resetCursor(textarea, currentPos - 1);
+}
 
-// document.querySelector("input").onkeydown = function (event) {
-//   // console.log("keydown");
-//   // console.log("chareCode:" + event.charCode);
-//   // console.log("code:" + event.code);
-//   // console.log("key:" + event.key);
-//   // console.log("keyCode:" + event.keyCode);
-//   // console.log(event);
-//   // console.log("1");
-//   // if (event.key == "CapsKock") {
-//   //   document.querySelector("input").checked = true;
-//   // } else {
-//   //   document.querySelector("input").checked = false;
-//   // }
-//   // ! ========= вариант 1 ============
-//   // // выполнения сочитаний клавиш(нажал - сработало, на удержании не работает, отпустил и нажал повторно - сработало)
-//   // if (event.code == "AltLeft") flag = true;
-//   // if (event.code == "KeyN" && flag) {
-//   //   flag = false;
-//   //   console.log("good");
-//   // }
-//   // ! ========= вариант 2 ============
-//   // if (event.code == "AltLeft") {
-//   //   document.onkeyup = function (event) {
-//   //     if (event.code == "KeyN") {
-//   //       console.log("good");
-//   //     } else {
-//   //       document.onkeyup = null;
-//   //     }
-//   //   };
-//   // }
-// };
-// document.querySelector("input").onkeyup = function (event) {
-//   // console.log("keyup");
-//   // console.log("chareCode:" + event.charCode);
-//   // console.log("code:" + event.code);
-//   // console.log("key:" + event.key);
-//   // console.log("keyCode:" + event.keyCode);
-//   // console.log(event);
-//   // console.log("1");
-// };
+// Function to handle Delete key press
+function Delete() {}
+
+// Function to handle ArrowUp key press
+function ArrowUp() {}
+
+// Function to handle ArrowLeft key press
+function ArrowLeft() {}
+
+// Function to handle ArrowDown key press
+function ArrowDown() {}
+
+// Function to handle ArrowRight key press
+function ArrowRight() {}

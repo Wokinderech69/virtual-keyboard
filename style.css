@@ -1,4 +1,13 @@
+.textarea {
+	display: block;
+	width: 970px;
+	height: 170px;
+	margin: 20px auto;
+	padding: 5px;
+	font-size: 45px;
+}
 .key-board {
+	background-color: silver;
 	display: flex;
 	margin: 50px auto;
 	text-align: center;
@@ -105,11 +114,4 @@
 
 .buttons:active {
 	background-color: rgba(241, 8, 8, 0.902);
-}
-.textarea {
-	display: block;
-	width: 970px;
-	height: 170px;
-	margin: 20px auto;
-	padding: 5px;
 }
