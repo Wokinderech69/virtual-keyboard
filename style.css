@@ -2,7 +2,7 @@
 	display: flex;
 	margin: 50px auto;
 	text-align: center;
-	width: 1000px;
+	max-width: 1000px;
 	height: 320px;
 	border-radius: 15px;
 	align-items: top;
@@ -98,27 +98,9 @@
 				[data='62'],
 				[data='63'] {
 	background-color: rgba(0, 0, 64, 0.888);
+	justify-content: center;
 	width: 60px;
-}
-
-/* button Arrow-top */
-.buttons[data='53'] {
-
-}
-
-/* button Arrow-bottom */
-.buttons[data='62'] {
-
-}
-
-/* button Arrow-left */
-.buttons[data='61'] {
-
-}
-
-/* button Arrow-right */
-.buttons[data='63'] {
-
+	color: #000;
 }
 
 .buttons:active {
