@@ -132,9 +132,9 @@ function mouseClick(clicked) {
     textareaElement.append("");
   } else {
     if (lang == "rus") {
-      textareaElement.append(Else(symbols[attribute].rus[capsLock]));
+      textareaElement.append(Other(symbols[attribute].rus[capsLock]));
     } else {
-      textareaElement.append(Else(symbols[attribute].eng[capsLock]));
+      textareaElement.append(Other(symbols[attribute].eng[capsLock]));
     }
   }
 }
@@ -197,10 +197,36 @@ function Delete() {
 function ArrowUp() {}
 
 // Function to handle ArrowLeft key press
-function ArrowLeft() {}
+function ArrowLeft() {
+  let textarea = document.querySelector(".textarea");
+  let currentPos = getCaret(textarea);
+  let text = textarea.value;
+  let Del = text.substr(0, currentPos) + text.substr(currentPos, text.length);
+  textarea.value = Del;
+  resetCursor(textarea, currentPos - 1);
+}
 
 // Function to handle ArrowDown key press
 function ArrowDown() {}
 
 // Function to handle ArrowRight key press
-function ArrowRight() {}
+function ArrowRight() {
+  let textarea = document.querySelector(".textarea");
+  let currentPos = getCaret(textarea);
+  let text = textarea.value;
+  let Del = text.substr(0, currentPos) + text.substr(currentPos, text.length);
+  textarea.value = Del;
+  resetCursor(textarea, currentPos + 1);
+}
+
+// Function to handle Enter key press
+function Enter() {}
+
+// Function to handle Others key press
+function Other(data) {}
+
+// Function to handle ArrowUp key press
+function Space() {}
+
+// Function to handle ArrowUp key press
+function Tab() {}
