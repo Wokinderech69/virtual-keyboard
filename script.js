@@ -69,6 +69,9 @@ function full() {
 full();
 
 let activeShift;
+let pressedShift = false;
+let pressedAlt = false;
+let pressedAltGr = false;
 
 function mouseClick(clicked) {
   let attribute = clicked.getAttribute("data");
@@ -81,6 +84,7 @@ function mouseClick(clicked) {
     }
     button = "";
     full();
+    activeCapsLock();
   } else if (attribute == "13") {
     textareaElement.append(Backspace());
   } else if (attribute == "14") {
@@ -133,6 +137,7 @@ function mouseClick(clicked) {
       activeShift = "54";
     button = "";
     fill();
+    addPress();
   } else if (["42", "54", "55", "56", "57", "59", "60"].includes(attribute)) {
     textareaElement.append("");
   } else {
@@ -141,6 +146,26 @@ function mouseClick(clicked) {
     } else {
       textareaElement.append(Else(symbols[attribute].eng[capsLock]));
     }
+  }
+}
+
+function activeCapsLock() {
+  const buttons = document.querySelectorAll(".buttons");
+  if (capsLock == 1) {
+    buttons[29].classList.add("active-keys");
+  }
+}
+
+function addPress() {
+  const button = document.querySelectorAll(".buttons");
+  if (pressedShift == true) {
+    button[activeShift].classList.add("active");
+  }
+  if (pressedAlt == true) {
+    button[57].classList.add("active");
+  }
+  if (pressedAltGr == true) {
+    button[59].classList.add("active");
   }
 }
 

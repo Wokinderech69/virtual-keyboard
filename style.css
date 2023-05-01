@@ -122,3 +122,11 @@
 .buttons:active {
 	background-color: rgba(241, 8, 8, 0.902);
 }
+.active {
+	background-color: rgb(238, 255, 127);
+}
+
+.active-keys {
+	background-color: rgba(8, 35, 241, 0.902);
+	border: 2px solid rgba(241, 8, 8, 0.902);
+}
