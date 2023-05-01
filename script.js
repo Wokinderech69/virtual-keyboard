@@ -1,8 +1,14 @@
 import symbols from "./symbols.js";
 
+const title = document.createElement("h1");
+let titleDesc = document.createTextNode("RSS Virtual Keyboard");
+title.appendChild(titleDesc);
+title.classList.add("title");
+document.body.appendChild(title);
+
 const textareaElement = document.createElement("textarea");
 textareaElement.classList.add("textarea");
-document.body.appendChild(textareaElement);
+title.after(textareaElement);
 
 const keyBoard = document.createElement("div");
 keyBoard.classList.add("key-board");
