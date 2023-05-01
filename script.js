@@ -220,13 +220,45 @@ function ArrowRight() {
 }
 
 // Function to handle Enter key press
-function Enter() {}
+function Enter() {
+  let textarea = document.querySelector(".textarea");
+  let currentPos = getCaret(textarea);
+  let text = textarea.value;
+  let Del =
+    text.substr(0, currentPos) + "\n" + text.substr(currentPos, text.length);
+  textarea.value = Del;
+  resetCursor(textarea, currentPos + 1);
+}
 
 // Function to handle Others key press
-function Other(data) {}
+function Other(data) {
+  let textarea = document.querySelector(".textarea");
+  let currentPos = getCaret(textarea);
+  let text = textarea.value;
+  let Del =
+    text.substr(0, currentPos) + data + text.substr(currentPos, text.length);
+  textarea.value = Del;
+  resetCursor(textarea, currentPos + 1);
+}
 
 // Function to handle ArrowUp key press
-function Space() {}
+function Space() {
+  let textarea = document.querySelector(".textarea");
+  let currentPos = getCaret(textarea);
+  let text = textarea.value;
+  let Del =
+    text.substr(0, currentPos) + " " + text.substr(currentPos, text.length);
+  textarea.value = Del;
+  resetCursor(textarea, currentPos + 1);
+}
 
 // Function to handle ArrowUp key press
-function Tab() {}
+function Tab() {
+  let textarea = document.querySelector(".textarea");
+  let currentPos = getCaret(textarea);
+  let text = textarea.value;
+  let Del =
+    text.substr(0, currentPos) + "    " + text.substr(currentPos, text.length);
+  textarea.value = Del;
+  resetCursor(textarea, currentPos + 4);
+}
