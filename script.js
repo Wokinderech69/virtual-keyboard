@@ -14,11 +14,23 @@ const keyBoard = document.createElement("div");
 keyBoard.classList.add("key-board");
 textareaElement.after(keyBoard);
 
-let lang = localStorage.getItem("Language") || "eng";
-
-if (lang !== "eng" && lang !== "rus") {
-  localStorage.setItem("Language", "eng");
-  lang = "eng";
+//=====Language======
+let getLocalStorage = localStorage.getItem("Language");
+let lang;
+let shiftAlt = [];
+switch (getLocalStorage) {
+  case null:
+    localStorage.setItem("Language", "eng");
+    lang = "eng";
+    break;
+  case "eng":
+    lang = "eng";
+    break;
+  case "rus":
+    lang = "rus";
+    break;
+  default:
+    break;
 }
 
 const capsLock = 0;
