@@ -14,6 +14,17 @@ const keyBoard = document.createElement("div");
 keyBoard.classList.add("key-board");
 textareaElement.after(keyBoard);
 
+const description = document.createElement("div");
+description.classList.add("description");
+description.innerText =
+  "The keyboard is created in the Windows operating system";
+keyBoard.after(description);
+
+const desc = document.createElement("div");
+desc.classList.add("desc");
+desc.innerText = "To switch the language combination: left ctrl + alt";
+description.after(desc);
+
 //=====Language======
 let getLocalStorage = localStorage.getItem("Language");
 let lang;

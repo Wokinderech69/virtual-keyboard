@@ -130,3 +130,13 @@
 	background-color: rgba(8, 35, 241, 0.902);
 	border: 2px solid rgba(241, 8, 8, 0.902);
 }
+
+.description {
+	margin: 10px auto;
+	text-align: center;
+}
+
+.desc {
+	margin: 10px auto;
+	text-align: center;
+}
