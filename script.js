@@ -37,6 +37,14 @@ function full() {
       mouseClick(event.target);
     });
   }
+
+  const spaceButtonIndex = symbols.findIndex(
+    (symbol) => symbol.button === "58"
+  );
+
+  button[58].addEventListener("click", function () {
+    textareaElement.append(" ");
+  });
   if (capsLock == 1) {
     buttons[29].classList.add("active-keys");
   }
