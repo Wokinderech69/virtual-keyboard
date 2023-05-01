@@ -55,16 +55,6 @@ function full() {
       mouseClick(event.target);
     });
   }
-  // const spaceButtonIndex = symbols.findIndex(
-  //   (symbol) => symbol.button === "58"
-  // );
-
-  // button[58].addEventListener("click", function () {
-  //   textareaElement.append(" ");
-  // });
-  // if (capsLock == 1) {
-  //   buttons[29].classList.add("active-keys");
-  // }
 }
 full();
 
@@ -193,7 +183,15 @@ function Backspace() {
 }
 
 // Function to handle Delete key press
-function Delete() {}
+function Delete() {
+  let textarea = document.querySelector(".textarea");
+  let currentPos = getCaret(textarea);
+  let text = textarea.value;
+  let Del =
+    text.substr(0, currentPos) + text.substr(currentPos + 1, text.length);
+  textarea.value = Del;
+  resetCursor(textarea, currentPos);
+}
 
 // Function to handle ArrowUp key press
 function ArrowUp() {}
