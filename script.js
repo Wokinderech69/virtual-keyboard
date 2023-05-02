@@ -205,27 +205,45 @@ function Delete() {
 }
 
 // Function to handle ArrowUp key press
-function ArrowUp() {}
+function ArrowUp() {
+  let textarea = document.querySelector(".textarea");
+  let currentPos = getCaret(textarea);
+  let text = textarea.value;
+  let Del =
+    text.substr(0, currentPos) + "▲" + text.substr(currentPos, text.length);
+  textarea.value = Del;
+  resetCursor(textarea, currentPos + 1);
+}
 
 // Function to handle ArrowLeft key press
 function ArrowLeft() {
   let textarea = document.querySelector(".textarea");
   let currentPos = getCaret(textarea);
   let text = textarea.value;
-  let Del = text.substr(0, currentPos) + text.substr(currentPos, text.length);
+  let Del =
+    text.substr(0, currentPos) + "◄" + text.substr(currentPos, text.length);
   textarea.value = Del;
-  resetCursor(textarea, currentPos - 1);
+  resetCursor(textarea, currentPos + 1);
 }
 
 // Function to handle ArrowDown key press
-function ArrowDown() {}
+function ArrowDown() {
+  let textarea = document.querySelector(".textarea");
+  let currentPos = getCaret(textarea);
+  let text = textarea.value;
+  let Del =
+    text.substr(0, currentPos) + "▼" + text.substr(currentPos, text.length);
+  textarea.value = Del;
+  resetCursor(textarea, currentPos + 1);
+}
 
 // Function to handle ArrowRight key press
 function ArrowRight() {
   let textarea = document.querySelector(".textarea");
   let currentPos = getCaret(textarea);
   let text = textarea.value;
-  let Del = text.substr(0, currentPos) + text.substr(currentPos, text.length);
+  let Del =
+    text.substr(0, currentPos) + "►" + text.substr(currentPos, text.length);
   textarea.value = Del;
   resetCursor(textarea, currentPos + 1);
 }
