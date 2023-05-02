@@ -28,7 +28,6 @@ description.after(desc);
 //=====Language======
 let getLocalStorage = localStorage.getItem("Language");
 let lang;
-// let shiftAlt = [];
 switch (getLocalStorage) {
   case null:
     localStorage.setItem("Language", "eng");
@@ -44,19 +43,26 @@ switch (getLocalStorage) {
     break;
 }
 
-const capsLock = 0;
+let capsLock = 0;
 
 let button = "";
 function full() {
   for (let i = 0; i < symbols.length; i++) {
-    let symbol = lang === "eng" ? symbols[i].eng : symbols[i].rus;
-    let buttonText = symbol[capsLock] || symbol.default;
-    button +=
-      '<div class="buttons" data="' +
-      symbols[i].button +
-      '">' +
-      buttonText +
-      "</div>";
+    if (lang == "eng") {
+      button +=
+        '<div class="buttons" data="' +
+        symbols[i].button +
+        '" >' +
+        symbols[i].eng[capsLock] +
+        "</div>";
+    } else if (lang == "rus") {
+      button +=
+        '<div class="buttons" data="' +
+        symbols[i].button +
+        '" >' +
+        symbols[i].rus[capsLock] +
+        "</div>";
+    }
   }
   keyBoard.innerHTML = button;
   //type with the mouse
@@ -73,6 +79,27 @@ let activeShift;
 let pressedShift = false;
 let pressedAlt = false;
 let pressedAltGr = false;
+let activeCaps;
+
+function activeCapsLock() {
+  const buttons = document.querySelectorAll(".buttons");
+  if (activeCaps == true) {
+    buttons[29].classList.add("active-keys");
+  }
+}
+
+function addPress() {
+  const button = document.querySelectorAll(".buttons");
+  if (pressedShift == true) {
+    button[activeShift].classList.add("active");
+  }
+  if (pressedAlt == true) {
+    button[57].classList.add("active");
+  }
+  if (pressedAltGr == true) {
+    button[59].classList.add("active");
+  }
+}
 
 function mouseClick(clicked) {
   let attribute = clicked.getAttribute("data");
@@ -82,6 +109,12 @@ function mouseClick(clicked) {
       capsLock = 1;
     } else if (capsLock == 1) {
       capsLock = 0;
+    }
+
+    if (clicked.classList.contains("active-keys")) {
+      activeCaps = true;
+    } else {
+      activeCaps = false;
     }
     button = "";
     full();
@@ -147,26 +180,6 @@ function mouseClick(clicked) {
     } else {
       textareaElement.append(Other(symbols[attribute].eng[capsLock]));
     }
-  }
-}
-
-function activeCapsLock() {
-  const buttons = document.querySelectorAll(".buttons");
-  if (capsLock == 1) {
-    buttons[29].classList.add("active-keys");
-  }
-}
-
-function addPress() {
-  const button = document.querySelectorAll(".buttons");
-  if (pressedShift == true) {
-    button[activeShift].classList.add("active");
-  }
-  if (pressedAlt == true) {
-    button[57].classList.add("active");
-  }
-  if (pressedAltGr == true) {
-    button[59].classList.add("active");
   }
 }
 
