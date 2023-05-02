@@ -22,7 +22,7 @@ keyBoard.after(description);
 
 const desc = document.createElement("div");
 desc.classList.add("desc");
-desc.innerText = "To switch the language combination: left ctrl + alt";
+desc.innerText = "To switch the language combination: Alt + Shift";
 description.after(desc);
 
 //=====Language======
@@ -291,10 +291,11 @@ function Tab() {
   textarea.value = Del;
   resetCursor(textarea, currentPos + 4);
 }
+
 //================= actions when pressing keys ====================
 document.addEventListener("keypress", function (e) {
   console.log("+" + e.key + "  " + e.code);
-  for (let i = 0; i < ByteLengthQueuingStrategy.length; i++) {
+  for (let i = 0; i < symbols.length; i++) {
     let boxButton = document.querySelector(
       '.buttons[data="' + symbols[i].button + '"]'
     );
@@ -303,7 +304,7 @@ document.addEventListener("keypress", function (e) {
       } else {
         if (e.code == symbols[i].code) {
           boxButton.classList.add("active");
-          e.prevDefault();
+          e.preventDefault();
           boxButton.click();
           if (capsLock == 0) {
             capsLock = 1;
@@ -335,7 +336,7 @@ document.addEventListener("keypress", function (e) {
         if (e.code == symbols[i].code) {
           boxButton.classList.add("active");
           boxButton.click();
-          e.prevDefault();
+          e.preventDefault();
           pressedAltGr = true;
           addPress();
           break;
@@ -345,16 +346,75 @@ document.addEventListener("keypress", function (e) {
       if (e.code == symbols[i].code) {
         boxButton.classList.add("active");
         boxButton.click();
-        e.prevDefault();
+        e.preventDefault();
         break;
       }
     } else {
       for (let j = 0; j < symbols[i].all.length; j++) {
         if (e.key == symbols[i].all[j]) {
           boxButton.classList.add("active");
-          e.prevDefault();
+          e.preventDefault();
           boxButton.click();
           break;
+        }
+      }
+    }
+  }
+});
+
+//================= actions when releasing keys ====================
+document.addEventListener("keyreleas", function (e) {
+  console.log("-" + e.key + "  " + e.code);
+  for (let i = 0; i < symbols.length; i++) {
+    for (let i = 0; i < symbols.length; i++) {
+      let boxButton = document.querySelector(
+        '.buttons[data="' + symbols[i].button + '"]'
+      );
+      if (e.key == "Shift") {
+        if (pressedShift == false) {
+        } else {
+          if (e.code == symbols[i].code) {
+            boxButton.classList.remove("active");
+            if (capsLock == 0) {
+              capsLock = 1;
+            } else if (capsLock == 1) {
+              capsLock = 0;
+            }
+            button = "";
+            full();
+            pressedShift = false;
+            break;
+          }
+        }
+      } else if (e.code == "AltRight") {
+        if (pressedAltGr == false) {
+        } else {
+          if (e.code == symbols[i].code) {
+            boxButton.classList.remove("active");
+            pressedAltGr = false;
+            break;
+          }
+        }
+      } else if (e.key == "Alt" && e.code == "AltLeft") {
+        if (pressedAlt == false) {
+        } else {
+          if (e.code == symbols[i].code) {
+            boxButton.classList.remove("active");
+            pressedAlt = false;
+            break;
+          }
+        }
+      } else if (e.key == "Control") {
+        if (e.code == symbols[i].code) {
+          boxButton.classList.remove("active");
+          break;
+        }
+      } else {
+        for (let j = 0; j < symbols[i].all.length; j++) {
+          if (e.key == symbols[i].all[j]) {
+            boxButton.classList.remove("active");
+            break;
+          }
         }
       }
     }

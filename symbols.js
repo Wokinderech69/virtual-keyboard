@@ -365,7 +365,7 @@ const symbols = [
     code: ["AltRight"],
     eng: ["Alt", "Alt"],
     rus: ["Alt", "Alt"],
-    all: ["AltGraph"],
+    all: ["AltRight"],
   },
   {
     button: 60,
