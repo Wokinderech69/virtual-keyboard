@@ -28,7 +28,7 @@ description.after(desc);
 //=====Language======
 let getLocalStorage = localStorage.getItem("Language");
 let lang;
-let shiftAlt = [];
+// let shiftAlt = [];
 switch (getLocalStorage) {
   case null:
     localStorage.setItem("Language", "eng");
@@ -291,3 +291,72 @@ function Tab() {
   textarea.value = Del;
   resetCursor(textarea, currentPos + 4);
 }
+//================= actions when pressing keys ====================
+document.addEventListener("keypress", function (e) {
+  console.log("+" + e.key + "  " + e.code);
+  for (let i = 0; i < ByteLengthQueuingStrategy.length; i++) {
+    let boxButton = document.querySelector(
+      '.buttons[data="' + symbols[i].button + '"]'
+    );
+    if (e.key == "Shift") {
+      if (pressedShift == true) {
+      } else {
+        if (e.code == symbols[i].code) {
+          boxButton.classList.add("active");
+          e.prevDefault();
+          boxButton.click();
+          if (capsLock == 0) {
+            capsLock = 1;
+          } else if (capsLock == 1) {
+            capsLock = 0;
+          }
+          if (
+            document
+              .querySelector('buttons[data="42"]')
+              .classList.contains("active")
+          )
+            activeShift = "42";
+          if (
+            document
+              .querySelector('buttons[data="54"]')
+              .classList.contains("active")
+          )
+            activeShift = "54";
+          button = "";
+          full();
+          pressedShift = true;
+          addPress();
+          break;
+        }
+      }
+    } else if (e.code == "AltRight") {
+      if (pressedAltGr == true) {
+      } else {
+        if (e.code == symbols[i].code) {
+          boxButton.classList.add("active");
+          boxButton.click();
+          e.prevDefault();
+          pressedAltGr = true;
+          addPress();
+          break;
+        }
+      }
+    } else if (e.key == "Control") {
+      if (e.code == symbols[i].code) {
+        boxButton.classList.add("active");
+        boxButton.click();
+        e.prevDefault();
+        break;
+      }
+    } else {
+      for (let j = 0; j < symbols[i].all.length; j++) {
+        if (e.key == symbols[i].all[j]) {
+          boxButton.classList.add("active");
+          e.prevDefault();
+          boxButton.click();
+          break;
+        }
+      }
+    }
+  }
+});
