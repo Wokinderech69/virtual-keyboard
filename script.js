@@ -103,6 +103,7 @@ function addPress() {
 
 function mouseClick(clicked) {
   let attribute = clicked.getAttribute("data");
+  let exitShould = false;
   if (attribute == "29") {
     clicked.classList.toggle("active-keys");
     if (capsLock == 0) {
@@ -110,7 +111,6 @@ function mouseClick(clicked) {
     } else if (capsLock == 1) {
       capsLock = 0;
     }
-
     if (clicked.classList.contains("active-keys")) {
       activeCaps = true;
     } else {
@@ -153,6 +153,7 @@ function mouseClick(clicked) {
           .querySelector('.buttons[data="59"]')
           .classList.contains("active")))
   ) {
+    // code for language switch
     textareaElement.append("");
     if (lang == "eng") {
       localStorage.setItem("Language", "rus");
@@ -169,9 +170,16 @@ function mouseClick(clicked) {
       document.querySelector('.buttons[data="54"]').classList.contains("active")
     )
       activeShift = "54";
+    if (
+      document
+        .querySelector('.buttons[data="29"]')
+        .classList.contains("active-keys")
+    )
+      activeCaps = true;
     button = "";
-    fill();
+    full();
     addPress();
+    exitShould = true;
   } else if (["42", "54", "55", "56", "57", "59", "60"].includes(attribute)) {
     textareaElement.append("");
   } else {
@@ -204,6 +212,7 @@ function Backspace() {
   let backSpace = text.slice(0, currentPos - 1) + text.slice(currentPos);
   textarea.value = backSpace;
   resetCursor(textarea, currentPos - 1);
+  return null;
 }
 
 // Function to handle Delete key press
@@ -215,6 +224,7 @@ function Delete() {
     text.substr(0, currentPos) + text.substr(currentPos + 1, text.length);
   textarea.value = Del;
   resetCursor(textarea, currentPos);
+  return null;
 }
 
 // Function to handle ArrowUp key press
@@ -226,6 +236,7 @@ function ArrowUp() {
     text.substr(0, currentPos) + "▲" + text.substr(currentPos, text.length);
   textarea.value = Del;
   resetCursor(textarea, currentPos + 1);
+  return null;
 }
 
 // Function to handle ArrowLeft key press
@@ -237,6 +248,7 @@ function ArrowLeft() {
     text.substr(0, currentPos) + "◄" + text.substr(currentPos, text.length);
   textarea.value = Del;
   resetCursor(textarea, currentPos + 1);
+  return null;
 }
 
 // Function to handle ArrowDown key press
@@ -248,6 +260,7 @@ function ArrowDown() {
     text.substr(0, currentPos) + "▼" + text.substr(currentPos, text.length);
   textarea.value = Del;
   resetCursor(textarea, currentPos + 1);
+  return null;
 }
 
 // Function to handle ArrowRight key press
@@ -259,6 +272,7 @@ function ArrowRight() {
     text.substr(0, currentPos) + "►" + text.substr(currentPos, text.length);
   textarea.value = Del;
   resetCursor(textarea, currentPos + 1);
+  return null;
 }
 
 // Function to handle Enter key press
@@ -270,6 +284,7 @@ function Enter() {
     text.substr(0, currentPos) + "\n" + text.substr(currentPos, text.length);
   textarea.value = Del;
   resetCursor(textarea, currentPos + 1);
+  return null;
 }
 
 // Function to handle Others key press
@@ -281,6 +296,7 @@ function Other(data) {
     text.substr(0, currentPos) + data + text.substr(currentPos, text.length);
   textarea.value = Del;
   resetCursor(textarea, currentPos + 1);
+  return null;
 }
 
 // Function to handle ArrowUp key press
@@ -292,6 +308,7 @@ function Space() {
     text.substr(0, currentPos) + " " + text.substr(currentPos, text.length);
   textarea.value = Del;
   resetCursor(textarea, currentPos + 1);
+  return null;
 }
 
 // Function to handle ArrowUp key press
@@ -303,6 +320,7 @@ function Tab() {
     text.substr(0, currentPos) + "    " + text.substr(currentPos, text.length);
   textarea.value = Del;
   resetCursor(textarea, currentPos + 4);
+  return null;
 }
 
 //================= actions when pressing keys ====================
@@ -326,13 +344,13 @@ document.addEventListener("keypress", function (e) {
           }
           if (
             document
-              .querySelector('buttons[data="42"]')
+              .querySelector('.buttons[data="42"]')
               .classList.contains("active")
           )
             activeShift = "42";
           if (
             document
-              .querySelector('buttons[data="54"]')
+              .querySelector('.buttons[data="54"]')
               .classList.contains("active")
           )
             activeShift = "54";
@@ -376,7 +394,7 @@ document.addEventListener("keypress", function (e) {
 });
 
 //================= actions when releasing keys ====================
-document.addEventListener("keyreleas", function (e) {
+document.addEventListener("keyup", function (e) {
   console.log("-" + e.key + "  " + e.code);
   for (let i = 0; i < symbols.length; i++) {
     for (let i = 0; i < symbols.length; i++) {
