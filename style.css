@@ -1,0 +1,147 @@
+.title {
+	text-align: center;
+	font-size: 30px;
+	color: rgba(101,134,177,0.8);
+	-webkit-text-stroke: 1px rgba(114,177,101,0.8);
+	-webkit-text-fill-color: rgba(101,134,177,0.8);
+}
+.textarea {
+	display: block;
+	width: 970px;
+	height: 170px;
+	margin: 20px auto;
+	padding: 5px;
+	font-size: 45px;
+}
+.key-board {
+	background-color: silver;
+	display: flex;
+	margin: 50px auto;
+	text-align: center;
+	width: 1000px;
+	height: 320px;
+	border-radius: 15px;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	border: 2px solid black;
+	padding: 5px;
+}
+.buttons {
+	background-color: rgb(73, 73, 73);
+	font-size: 23px;
+	height: 45px;
+	width: 50px;
+	margin: 3px;
+	padding: 3px;
+	border-radius: 8px;
+	border: 2px solid #ccc;
+	color: #fff;
+	cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	justify-content: start;
+}
+
+/* button Tab */
+.buttons[data='14'] {
+	width: 60px;
+}
+
+/* button Caps Lock */
+.buttons[data='29'] {
+	width: 124px;
+}
+
+/* button Shift-left */
+.buttons[data='42'] {
+	width: 105px;
+}
+
+/* button Ctrl-left */
+.buttons[data='55'] {
+	width: 70px;
+}
+
+/* button Backspace */
+.buttons[data='13'] {
+	width: 140px;
+}
+
+/* button Delete */
+.buttons[data='28'] {
+	width: 70px;
+}
+
+/* button Enter */
+.buttons[data='41'] {
+	width: 120px;
+}
+
+/* button Shift-right */
+.buttons[data='54'] {
+	width: 60px;
+}
+
+/* button Ctrl-right */
+.buttons[data='60'] {
+	width: 70px;
+}
+/* button Space */
+.buttons[data='58'] {
+	width: 340px;
+}
+
+.buttons[data='60'],
+				[data='59'],
+				[data='57'],
+				[data='56'],
+				[data='55'],
+				[data='54'],
+				[data='42'],
+				[data='41'],
+				[data='29'],
+				[data='28'],
+				[data='14'],
+				[data='13'] {
+	background-color: #171616f0;
+	color: rgb(126, 126, 126);
+}
+
+/* button Arrow */
+.buttons[data='53'],
+				[data='61'],
+				[data='62'],
+				[data='63'] {
+	background-color: rgba(0, 0, 64, 0.888);
+	justify-content: center;
+	width: 60px;
+	color: #000;
+}
+.buttons:hover {
+	background-color: rgba(8, 214, 163, 0.902);
+	transition: border-radius 0.3s, background-color 0.3s;
+}
+.buttons:active {
+	background-color: rgba(241, 8, 8, 0.902);
+	transition: border-radius 0.3s, background-color 0.3s;
+}
+.active {
+	background-color: rgb(238, 255, 127);
+	transition: border-radius 0.3s, background-color 0.3s;
+}
+
+.active-keys {
+	background-color: rgba(8, 35, 241, 0.902);
+	transition: border-radius 0.3s, background-color 0.3s;
+	border: 2px solid rgba(241, 8, 8, 0.902);
+}
+
+.description {
+	margin: 10px auto;
+	text-align: center;
+}
+
+.desc {
+	margin: 10px auto;
+	text-align: center;
+}
