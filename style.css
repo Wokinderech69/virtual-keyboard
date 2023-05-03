@@ -21,7 +21,6 @@
 	width: 1000px;
 	height: 320px;
 	border-radius: 15px;
-	align-items: top;
 	flex-wrap: wrap;
 	justify-content: space-between;
 	border: 2px solid black;
@@ -120,16 +119,20 @@
 }
 .buttons:hover {
 	background-color: rgba(8, 214, 163, 0.902);
+	transition: border-radius 0.3s, background-color 0.3s;
 }
 .buttons:active {
 	background-color: rgba(241, 8, 8, 0.902);
+	transition: border-radius 0.3s, background-color 0.3s;
 }
 .active {
 	background-color: rgb(238, 255, 127);
+	transition: border-radius 0.3s, background-color 0.3s;
 }
 
 .active-keys {
 	background-color: rgba(8, 35, 241, 0.902);
+	transition: border-radius 0.3s, background-color 0.3s;
 	border: 2px solid rgba(241, 8, 8, 0.902);
 }
 

@@ -75,7 +75,7 @@ function full() {
 }
 full();
 
-let activeShift;
+let activeShift = 0;
 let pressedShift = false;
 let pressedAlt = false;
 let pressedAltGr = false;
@@ -178,6 +178,7 @@ function mouseClick(clicked) {
       activeCaps = true;
     button = "";
     full();
+    activeCapsLock();
     addPress();
     exitShould = true;
   } else if (["42", "54", "55", "56", "57", "59", "60"].includes(attribute)) {
@@ -324,8 +325,7 @@ function Tab() {
 }
 
 //================= actions when pressing keys ====================
-document.addEventListener("keypress", function (e) {
-  console.log("+" + e.key + "  " + e.code);
+document.addEventListener("keydown", function (e) {
   for (let i = 0; i < symbols.length; i++) {
     let boxButton = document.querySelector(
       '.buttons[data="' + symbols[i].button + '"]'
@@ -358,18 +358,7 @@ document.addEventListener("keypress", function (e) {
           full();
           pressedShift = true;
           addPress();
-          break;
-        }
-      }
-    } else if (e.code == "AltRight") {
-      if (pressedAltGr == true) {
-      } else {
-        if (e.code == symbols[i].code) {
-          boxButton.classList.add("active");
-          boxButton.click();
-          e.preventDefault();
-          pressedAltGr = true;
-          addPress();
+          activeCapsLock();
           break;
         }
       }
@@ -379,6 +368,33 @@ document.addEventListener("keypress", function (e) {
         boxButton.click();
         e.preventDefault();
         break;
+      }
+    } else if (e.code == "AltRight") {
+      if (pressedAltGr == true) {
+      } else {
+        if (e.code == symbols[i].code) {
+          boxButton.classList.add("active");
+          document
+            .querySelector('.buttons[data="55"]')
+            .classList.remove("active");
+          boxButton.click();
+          e.preventDefault();
+          pressedAltGr = true;
+          addPress();
+          break;
+        }
+      }
+    } else if (e.code == "AltLeft") {
+      if (pressedAlt == true) {
+      } else {
+        if (e.code == symbols[i].code) {
+          boxButton.classList.add("active");
+          boxButton.click();
+          e.preventDefault();
+          pressedAlt = true;
+          addPress();
+          break;
+        }
       }
     } else {
       for (let j = 0; j < symbols[i].all.length; j++) {
@@ -395,7 +411,6 @@ document.addEventListener("keypress", function (e) {
 
 //================= actions when releasing keys ====================
 document.addEventListener("keyup", function (e) {
-  console.log("-" + e.key + "  " + e.code);
   for (let i = 0; i < symbols.length; i++) {
     for (let i = 0; i < symbols.length; i++) {
       let boxButton = document.querySelector(
@@ -413,6 +428,7 @@ document.addEventListener("keyup", function (e) {
             }
             button = "";
             full();
+            activeCapsLock();
             pressedShift = false;
             break;
           }
